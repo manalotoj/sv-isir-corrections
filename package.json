@@ -1,0 +1,35 @@
+{
+  "name": "sv-isir-corrections",
+  "version": "1.0.0",
+  "description": "StudentVerification ISIR corrections retrieval utility",
+  "main": "sv-isir-corrections.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manalotoj/sv-isir-corrections.git"
+  },
+  "keywords": [
+    "SV",
+    "StudentVerification",
+    "ISIR",
+    "Corrections",
+    "Batch",
+    "Batches",
+    "Get",
+    "Retrieval"
+  ],
+  "author": "John Manaloto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manalotoj/sv-isir-corrections/issues"
+  },
+  "homepage": "https://github.com/manalotoj/sv-isir-corrections#readme",
+  "dependencies": {
+    "oauth-wrap": "=1.0.4",
+    "promise": "^7.0.4",
+    "sv-api": "^1.0.8",
+    "winston": "=1.0.x"
+  }
+}
