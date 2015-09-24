@@ -31,5 +31,4 @@ integration
 integration.*
 integration.*.js
 
-#temporary; remove later
-config.json
+real.config.json

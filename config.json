@@ -1,0 +1,14 @@
+{
+	"logging" : {
+		"directory" : "./logs"
+	},
+	"oauthWrapRequest" : {
+		"url":"sts_url",
+		"creds":{"uid":"username", "pwd":"password"},
+		"wrapScope":"wrap_scope"
+	},
+	"svApi" : {
+		"rootUrl" : "root_url"
+	},
+	"targetDir" : "./target"
+}
