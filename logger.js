@@ -25,12 +25,12 @@ if ( !fs.existsSync( logDir ) ) {
 logger = new( winston.Logger )( {
 	transports: [
 		new winston.transports.Console( {
-			level: 'debug',
+			level: 'info',
 			colorize: true,
 			prettyPrint: true
 		} ),
 		new winston.transports.File( {
-			level: 'debug', //env === 'development' ? 'debug' : 'info',
+			level: 'info',
 			filename: logDir + '/logs.log',
 			maxsize: 1024 * 1024 * 10,
 			prettyPrint: true
