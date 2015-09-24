@@ -45,8 +45,9 @@
 *
 *Execute manually by opening a command prompt at the installation root directory:
 *
-*'		node sv-isir-corrections.js [YYYY-MM-DD] [YYYY-MM-DD]
-*'		ex. node al-file-upload.js '2015-09-21' '2015-09-22'
+*		node sv-isir-corrections.js [YYYY-MM-DD] [YYYY-MM-DD]
+*		
+*		ex. node al-file-upload.js '2015-09-21' '2015-09-22'
 *
 *The command accepts two date parameters. The second parameter cannot be less than the first parameter.
 *All correction files that were batched during this time period will be returned. The dates are inclusive.
