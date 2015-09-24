@@ -42,7 +42,8 @@ var get = function(startDate, endDate) {
 
 	if (!validate(startDate, endDate)) {
 		logger.error('Invalid date(s) detected.');
-		setTimeout(function(){process.exit(1);}, 2000);
+		// allow logger to write to log before exit
+		setTimeout(function(){process.exit(1);}, 3000);
 		return;
 	}
 
@@ -70,11 +71,15 @@ var get = function(startDate, endDate) {
 					}
 				})
 				.catch(function(error) {
-					logger.error('error retrieving ISIR corrections: ', error.stack);				
+					logger.error('error retrieving ISIR corrections: ', error.stack);
+					// allow logger to write to log before exit
+					setTimeout(process.exit(1), 3000);				
 				});
 		})
 		.catch(function(error) {
 			logger.error('error retrieving authorization: ', error.stack);
+			// allow logger to write to log before exit
+			setTimeout(process.exit(1), 3000);				
 		});
 }
 
