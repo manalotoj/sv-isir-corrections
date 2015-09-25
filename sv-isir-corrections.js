@@ -1,7 +1,7 @@
 /**
 *
-* @module al-file-upload
-* @description Supports a function to upload an input file to the AwardLetter Files API.
+* @module sv-isir-corrections
+* @description Supports a function to retrieve batched ISIR corrections from the StudentVerification API.
 ****
 *### Environment Requirements:
 *
@@ -11,8 +11,10 @@
 *### Installing directly from github:
 *
 *Clone or download as zip to local machine. For the later, unzip to desired location.
-*In a command prompt at the root installation directory, execute *>npm install* to install the following
-*all module dependencies.
+*In a command prompt at the root installation directory, execute the following command
+* to install all module dependencies:
+*
+*		>npm install
 *
 *### Configuration:
 *
@@ -40,6 +42,11 @@
 ***StudentVerification API:** Defines the root URL of the StudentVerification API.
 *
 *       "svApi" : { "rootUrl" : "root_url" }
+*
+***Target Directory:** Defines the directory/path to which batched ISIR correction files will be written to.
+*This value is defaulted to a target directory in the root installation directory.
+*
+*       "targetDir" : "./target"
 *
 *###Running sv-isir-corrections:
 *
