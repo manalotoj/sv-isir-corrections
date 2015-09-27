@@ -1,8 +1,12 @@
 {
   "name": "sv-isir-corrections",
-  "version": "1.0.0",
+  "version": "1.0.17",
   "description": "StudentVerification ISIR corrections retrieval utility",
-  "main": "sv-isir-corrections.js",
+  "main": "./sv-isir-corrections.js",
+  "bin": {
+    "sv-isir-corrections": "./sv-isir-corrections.js"
+  },
+  "preferGlobal": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,11 +32,9 @@
   "homepage": "https://github.com/manalotoj/sv-isir-corrections#readme",
   "dependencies": {
     "oauth-wrap": "=1.0.4",
+    "optimist": "^0.6.1",
     "promise": "^7.0.4",
     "sv-api": "^1.0.9",
     "winston": "=1.0.x"
-  },
-  "devDependencies": {
-    "express": "^4.13.3"
   }
 }

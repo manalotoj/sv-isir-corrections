@@ -1,18 +1,19 @@
+#!/usr/bin/env node
 /**
-*
-* @module al-file-upload
-* @description Supports a function to upload an input file to the AwardLetter Files API.
+* 
+* @module sv-isir-corrections
+* @description Retrieve batched ISIR corrections for a given date range.
 ****
 *### Environment Requirements:
 *
 ** Internet access (port 80 and SSL over port 5443).
 ** Node.js installed.
 *
-*### Installing directly from github:
+*### Installation:
 *
-*Clone or download as zip to local machine. For the later, unzip to desired location.
-*In a command prompt at the root installation directory, execute *>npm install* to install the following
-*all module dependencies.
+*Execute the following from a command prompt:
+*
+* 		npm install -g sv-isir-corrections
 *
 *### Configuration:
 *
@@ -41,13 +42,13 @@
 *
 *       "svApi" : { "rootUrl" : "root_url" }
 *
-*###Running sv-isir-corrections:
+*###Executing sv-isir-corrections:
 *
-*Execute manually by opening a command prompt at the installation root directory:
+*Execute manually by opening a command prompt:
 *
-*		node sv-isir-corrections.js [YYYY-MM-DD] [YYYY-MM-DD]
+*		sv-isir-corrections --startDate=[YYYY-MM-DD] --endDate=[YYYY-MM-DD] outputDir=[path]
 *		
-*		ex. node al-file-upload.js '2015-09-21' '2015-09-22'
+*		sv-isir-corrections --startDate=2015-09-21 --endDate=2015-09-22 outputDir=c:\temp\isirs
 *
 *The command accepts two date parameters. The second parameter cannot be less than the first parameter.
 *All correction files that were batched during this time period will be returned. The dates are inclusive.
@@ -63,6 +64,8 @@ var logger = require('./logger');
 var oauth = require('oauth-wrap');
 var config = require('./config');
 var promise = require('promise');
+var args = require('optimist').argv;
+var fs = require( 'fs' );
 
 svApi.logger = logger;
 
@@ -72,13 +75,16 @@ var validate = function(startDate, endDate) {
 			return false;
 		}		
 		var start = new Date(startDate);
-		var end = new Date(endDate);
-
+		var end = new Date(endDate);		
+		var startISO = start.toISOString();
+		var endISO = end.toISOString();
+		logger.debug('start: ', startISO);		
+		logger.debug('end: ', endISO);
 		if (start > end) return false;
 		return true;
 
 	} catch (error) {		
-		logger.error(errorMessage + '; error: ' + error.stack);	
+		logger.debug(error.stack);	
 	}
 	return false;
 }
@@ -93,12 +99,16 @@ var formatDate = function(dateString) {
 	return pad(date.getMonth() + 1) + '-' + pad(date.getDate()) + '-' + date.getFullYear();
 }
 
-var get = function(startDate, endDate) {
+var get = function(startDate, endDate, outputDir) {
+
+	if (!outputDir || !fs.existsSync(outputDir)) {
+		logger.error('outputDir does not exist.');
+		return;
+	}
 
 	if (!validate(startDate, endDate)) {
 		logger.error('Invalid date(s) detected.');
 		// allow logger to write to log before exit
-		setTimeout(function(){process.exit(1);}, 3000);
 		return;
 	}
 
@@ -113,7 +123,7 @@ var get = function(startDate, endDate) {
 				authorization, 
 				formatDate(startDate), 
 				formatDate(endDate), 
-				config.targetDir)	
+				outputDir)	
 				.then(function(files) {
 					logger.debug('files: ', files);
 					if (files.length > 0) {
@@ -127,17 +137,18 @@ var get = function(startDate, endDate) {
 				})
 				.catch(function(error) {
 					logger.error('error retrieving ISIR corrections: ', error.stack);
-					// allow logger to write to log before exit
-					setTimeout(process.exit(1), 3000);				
+					return;										
 				});
 		})
 		.catch(function(error) {
 			logger.error('error retrieving authorization: ', error.stack);
-			// allow logger to write to log before exit
-			setTimeout(process.exit(1), 3000);				
+			return;
 		});
 }
 
-var startDate = process.argv[2];
-var endDate = process.argv[3];
-get(startDate, endDate);
+var startDate = args.startDate;
+var endDate = args.endDate;
+var outputDir = args.outputDir;
+
+// allow logger to write to log before exit
+setTimeout(get(startDate, endDate, outputDir), 2000);

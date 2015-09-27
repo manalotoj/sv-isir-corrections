@@ -7,12 +7,21 @@
 
 'use strict';
 
-var winston = require( 'winston' ),
-	config = require('./config').logging,
-	logDir = config.directory,
-	fs = require( 'fs' ),
-	env = process.env.NODE_ENV || 'development',
-	logger;
+var winston = require( 'winston' );
+var fs = require( 'fs' );
+var	env = process.env.NODE_ENV || 'development';
+var config;
+var logDir;
+var logger;
+
+try {
+ config = require('./config');
+} catch (e) { console.log(e); }
+if (config && config.logging) {
+	logDir = config.logging.directory;
+} else {
+	var	logDir = './logs';
+}
 
 winston.setLevels( winston.config.npm.levels );
 winston.addColors( winston.config.npm.colors );
@@ -30,7 +39,7 @@ logger = new( winston.Logger )( {
 			prettyPrint: true
 		} ),
 		new winston.transports.File( {
-			level: 'info',
+			level: 'debug',
 			filename: logDir + '/logs.log',
 			maxsize: 1024 * 1024 * 10,
 			prettyPrint: true

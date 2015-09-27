@@ -3,12 +3,11 @@
 		"directory" : "./logs"
 	},
 	"oauthWrapRequest" : {
-		"url":"sts_url",
-		"creds":{"uid":"username", "pwd":"password"},
-		"wrapScope":"wrap_scope"
+		"url":"",
+		"creds":{"uid":"", "pwd":""},
+		"wrapScope":""
 	},
 	"svApi" : {
-		"rootUrl" : "root_url"
-	},
-	"targetDir" : "./target"
+		"rootUrl" : ""
+	}
 }
