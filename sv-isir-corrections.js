@@ -53,7 +53,6 @@
 *       "svApi" : { "rootUrl" : "root_url" }
 **
 *###Running sv-isir-corrections:
->>>>>>> origin/master
 *
 *Execute manually by opening a command prompt:
 *
