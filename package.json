@@ -1,6 +1,6 @@
 {
   "name": "sv-isir-corrections",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "StudentVerification ISIR corrections retrieval utility",
   "main": "./sv-isir-corrections.js",
   "bin": {
