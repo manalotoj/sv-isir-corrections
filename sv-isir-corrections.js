@@ -17,19 +17,14 @@
 *
 *Execute the following from a command prompt:
 *
-* 		npm install -g sv-isir-corrections
+*		npm install -g sv-isir-corrections
+*
 =======
-*Clone or download as zip to local machine. For the later, unzip to desired location.
-*In a command prompt at the root installation directory, execute the following command
-* to install all module dependencies:
-*
-*		>npm install
-*
 *### Configuration:
 *
 *All configuration is contained within the config.json file.
 *
-***Logging:** The module is configured to log to a _logs_ folder within the root directory of the application.
+***Logging:** The module is configured to log to a _logs_ folder within the directory that the application is executed from.
 *Standard log entries will be written to a file named alfilesystemwatcher.log while unhandled exceptions will
 *be logged to a file named alfilesystemwatchererrors.log.
 *
@@ -48,19 +43,21 @@
 *creds.pwd | User password
 *wrapScope | The resource that will be accessed using the authorization token.
 *
-***StudentVerification API:** Defines the root URL of the StudentVerification API.
+***StudentVerification API:** Defines the root URL of the StudentVerification API. A valid value must be specified.
 *
 *       "svApi" : { "rootUrl" : "root_url" }
-**
+*
 *###Running sv-isir-corrections:
 *
 *Execute manually by opening a command prompt:
 *
-*		sv-isir-corrections --startDate=[YYYY-MM-DD] --endDate=[YYYY-MM-DD] outputDir=[path]
+*		sv-isir-corrections --startDate=[YYYY-MM-DD] --endDate=[YYYY-MM-DD] --outputDir=[path]
 *		
-*		sv-isir-corrections --startDate=2015-09-21 --endDate=2015-09-22 outputDir=c:\temp\isirs
+*		sv-isir-corrections --startDate=2015-09-21 --endDate=2015-09-22 --outputDir=c:\temp\isirs
 *
-*The command accepts two date parameters. The second parameter cannot be less than the first parameter.
+*All parameters must be specified. StartDate must chronologically preceed or equal endDate.
+*It is best to provide an absolute path for outputDir; relative paths will be based on the directy in which
+*the command is executed. Any path provided must already exist.
 *All correction files that were batched during this time period will be returned. The dates are inclusive.
 **/
 
