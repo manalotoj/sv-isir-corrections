@@ -18,7 +18,6 @@
 *Execute the following from a command prompt:
 *
 *		npm install -g sv-isir-corrections
-*
 =======
 *### Configuration:
 *
