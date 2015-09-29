@@ -17,8 +17,8 @@
 *
 *Execute the following from a command prompt:
 *
-*		>npm install -g sv-isir-corrections
-=======
+*		npm install -g sv-isir-corrections		
+*
 *### Configuration:
 *
 *All configuration is contained within the config.json file.
@@ -58,6 +58,11 @@
 *It is best to provide an absolute path for outputDir; relative paths will be based on the directy in which
 *the command is executed. Any path provided must already exist.
 *All correction files that were batched during this time period will be returned. The dates are inclusive.
+*
+*Files are saved using the following naming convention: [batched date]-[batch file Id].txt where:
+*
+* 		batched date: 	"value", is the date that the batch was generated
+* 		batch file Id: 	integer value that uniquely identifies the batch file.
 **/
 
 'use strict';
